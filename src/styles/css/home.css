@@ -1,9 +1,15 @@
-.content-home {
+.home header {
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
 }
-.content-home header .icon-github {
+.home header .icon-github {
   font-size: 8rem;
+  margin-bottom: 2rem;
+}
+.home header div {
+  text-align: center;
 }
 
 /*# sourceMappingURL=home.css.map */

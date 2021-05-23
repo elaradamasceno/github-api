@@ -1,4 +1,5 @@
 import { Home } from "./components/Home";
+
 import './styles/css/global.css';
 
 function App() {

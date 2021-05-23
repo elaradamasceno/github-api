@@ -1,10 +1,19 @@
-.content-home{
-	width: 100%;
-	height: 100%;
+.home{
 
 	header{
+		width: 100%;
+		height: 100%;
+
+		display: flex;
+		justify-content: center;
+
 		.icon-github{
 			font-size: 8rem;
+			margin-bottom: 2rem;
+		}
+
+		div{
+			text-align: center;
 		}
 	}
 }

@@ -1,3 +1,5 @@
+@import '~antd/dist/antd.css';
+
 $background: #363636;
 $textColor: #D3D3D3;
 
@@ -10,13 +12,9 @@ $textColor: #D3D3D3;
 body{
     background: $background;
     color: $textColor;
-    padding: 2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center
 }
 
 .App{
     height: 100vh;
+    padding: 2rem;
 }
