@@ -11,5 +11,11 @@
 .home header div {
   text-align: center;
 }
+.home .content-home {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 2.5rem 0;
+}
 
 /*# sourceMappingURL=home.css.map */

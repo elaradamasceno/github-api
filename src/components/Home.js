@@ -13,18 +13,27 @@ export function Home(){
   const [ mainUsers, setMainUsers ] = useState([]);
 
   function getUsers(){
-    let url = 'https://api.github.com/users'
+    let url = 'https://api.github.com/users';
 
-    axios.get(url)
-    .then(res => {
-      if(res.status === 200){
-        setMainUsers(res.data);
-      }
-    })
+    let validateUsers = JSON.parse(localStorage.getItem('mainUsers'));
+
+    if(validateUsers === null){
+      axios.get(url)
+      .then(res => {
+        if(res.status === 200){
+          setMainUsers(res.data);
+          localStorage.setItem('mainUsers', JSON.stringify(res.data))
+        }
+      })
+    }
+    else {
+      setMainUsers(validateUsers);
+    }
+
   }
 
   useEffect(() => {
-    getUsers()
+    getUsers();
   }, []);
 
   return(
@@ -36,9 +45,20 @@ export function Home(){
         </div>
       </header>
 
-      <section className="content-home">
-        <CardUser></CardUser>
-      </section>
+      <div className="content-home">
+        {mainUsers && mainUsers.map((user, index) => {
+          console.log(user)
+          return(
+            <CardUser 
+              key={index}
+              avatar={user.avatar_url}
+              login={user.login}
+              userUrl={user.url}
+            >
+            </CardUser>
+          )
+        })}
+      </div>
     </div>
   )
 }

@@ -1,18 +1,29 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Card, Avatar } from 'antd';
-const { Meta } = Card;
+import '../styles/css/card-user.css';
 
-export function CardUser(){
+export function CardUser({avatar, login, userUrl}){
+	const { Meta } = Card;
+	const [detailsUser, setDetailsUser] = useState([]);
+
+	useEffect(() => {
+	},[])
+
+
 	return(
-		<Card
-			style={{ width: 300 }}
-		>
-			<Meta
-				avatar={
-					<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-				}
-				title="Card title"
-				description="This is the description"
-			/>
-		</Card>
+		<div className="card-user">
+			<Card
+				style={{ width: 300 }}
+			>
+				<Meta
+					avatar={
+						<Avatar src={avatar} />
+					}
+					title={login}
+					description="Clique para ver mais!"
+				/>
+			</Card>
+		</div>
 	)
 }
