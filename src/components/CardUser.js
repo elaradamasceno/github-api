@@ -3,18 +3,19 @@ import axios from 'axios';
 import { Card, Avatar } from 'antd';
 import '../styles/css/card-user.css';
 
-export function CardUser({avatar, login, userUrl}){
+export function CardUser({searchUser, avatar, login, userUrl}){
 	const { Meta } = Card;
 	const [detailsUser, setDetailsUser] = useState([]);
 
 	useEffect(() => {
-	},[])
+		// console.log(searchUser)
+	}, [])
 
 
 	return(
 		<div className="card-user">
 			<Card
-				style={{ width: 250 }}
+				// style={searchUser.length > 0 && { width: 400 }}
 			>
 				<Meta
 					avatar={

@@ -11,6 +11,7 @@ import { CardUser } from './CardUser';
 
 export function Home(){
   const [ mainUsers, setMainUsers ] = useState([]);
+  const [ searchUser, setSearchUser ] = useState([]);
 
   function getUsers(){
     let url = 'https://api.github.com/users';
@@ -35,20 +36,26 @@ export function Home(){
     getUsers();
   }, []);
 
+  useEffect(() => {
+    if(searchUser.length > 0)
+      setMainUsers(searchUser)
+  }, [searchUser])
+
   return(
     <div className="home">
       <header>
         <div>
           <GithubOutlined className="icon-github" />
-          <SearchUser></SearchUser>
+          <SearchUser resultSearchUser={setSearchUser}></SearchUser>
         </div>
       </header>
 
       <div className="content-home">
-        {mainUsers && mainUsers.map((user, index) => {
+        { mainUsers && mainUsers.map((user, index) => {
           return(
             <CardUser 
               key={index}
+              searchUser={searchUser}
               avatar={user.avatar_url}
               login={user.login}
               userUrl={user.url}
