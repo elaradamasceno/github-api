@@ -14,6 +14,23 @@ export function SearchUser({resultSearchUser}){
     setSearchValue(event.target.value);
   }
 
+  function clearSearchValue(){
+    setSearchValue("");
+    setSuccessSearch(false);
+    resultSearchUser(JSON.parse(localStorage.getItem('mainUsers')));
+  }
+
+  function requestSearchUser(){
+    let url = `https://api.github.com/users/${searchValue}`;
+    axios.get(url)
+    .then(res => {
+      if(res.status === 200){
+        resultSearchUser([res.data]);
+        setSuccessSearch(true);
+      }
+    })
+  }
+
   function displayRule(){
     switch(successSearch){
       case false:
@@ -38,29 +55,18 @@ export function SearchUser({resultSearchUser}){
               id="search" 
               type="primary" 
               shape="circle" 
-              icon={<CloseCircleOutlined />} 
+              icon={<CloseCircleOutlined />}
+              onClick={clearSearchValue}
             />
           </Tooltip>
         )
         break;
-
     }
-  }
-
-  function requestSearchUser(){
-    let url = `https://api.github.com/users/${searchValue}`;
-    axios.get(url)
-    .then(res => {
-      if(res.status === 200){
-        resultSearchUser([res.data]);
-        setSuccessSearch(true);
-      }
-    })
   }
 
   return(
     <div className="search-user">
-      <Input placeholder="Pesquise aqui..." onChange={getValueSearch}/>
+      <Input placeholder="Pesquise aqui..." onChange={getValueSearch} value={searchValue}/>
       {displayRule()}
     </div>
   )
