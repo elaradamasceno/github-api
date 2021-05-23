@@ -1,0 +1,23 @@
+$background: #696262;
+$color: #D3D3D3;
+
+.card-user{
+	.ant-card.ant-card-bordered{
+		background: $background;
+
+		border: none;
+		cursor: pointer;
+
+		margin-right: 1rem;
+		margin-bottom: 1rem;
+		border-radius: 6px;
+
+		.ant-card-meta-title, .ant-card-meta-description{
+			color: $color;
+		}
+	}
+
+	.ant-card.ant-card-bordered:hover{
+		box-shadow: 0px 0px 6px $color;
+	}
+}
