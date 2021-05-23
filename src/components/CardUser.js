@@ -15,6 +15,7 @@ export function CardUser({searchUser, avatar, login, userUrl}){
 	return(
 		<div className="card-user">
 			<Card
+				className={searchUser.length > 0 && 'researching-user'}
 				// style={searchUser.length > 0 && { width: 400 }}
 			>
 				<Meta

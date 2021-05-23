@@ -9,6 +9,9 @@
 .card-user .ant-card.ant-card-bordered .ant-card-meta-title, .card-user .ant-card.ant-card-bordered .ant-card-meta-description {
   color: #D3D3D3;
 }
+.card-user .ant-card.ant-card-bordered.researching-user {
+  width: 400px;
+}
 .card-user .ant-card.ant-card-bordered:hover {
   box-shadow: 0px 0px 6px #D3D3D3;
 }
