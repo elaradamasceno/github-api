@@ -14,7 +14,7 @@ export function CardUser({avatar, login, userUrl}){
 	return(
 		<div className="card-user">
 			<Card
-				style={{ width: 300 }}
+				style={{ width: 250 }}
 			>
 				<Meta
 					avatar={

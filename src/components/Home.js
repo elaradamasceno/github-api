@@ -1,11 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { GithubOutlined } from '@ant-design/icons';
-import { Input } from 'antd';
+import { GithubOutlined} from '@ant-design/icons';
 
 import '../styles/css/home.css';
 
+import { SearchUser } from './SearchUser';
 import { CardUser } from './CardUser';
 
 
@@ -29,7 +29,6 @@ export function Home(){
     else {
       setMainUsers(validateUsers);
     }
-
   }
 
   useEffect(() => {
@@ -41,13 +40,12 @@ export function Home(){
       <header>
         <div>
           <GithubOutlined className="icon-github" />
-          <Input placeholder="Pesquise aqui..." />
+          <SearchUser></SearchUser>
         </div>
       </header>
 
       <div className="content-home">
         {mainUsers && mainUsers.map((user, index) => {
-          console.log(user)
           return(
             <CardUser 
               key={index}

@@ -1,0 +1,9 @@
+.search-user {
+  display: flex;
+  width: 18rem;
+}
+.search-user #search {
+  margin-left: 0.5rem;
+}
+
+/*# sourceMappingURL=search-user.css.map */
