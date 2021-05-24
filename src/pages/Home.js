@@ -1,15 +1,17 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
+
 import { GithubOutlined} from '@ant-design/icons';
 
 import '../styles/css/home.css';
 
-import { SearchUser } from './SearchUser';
-import { CardUser } from './CardUser';
+import { SearchUser } from '../components/SearchUser';
+import { CardUser } from '../components/CardUser';
 
 
-export function Home(){
+export function Home({getAreaUser}){
   const [ mainUsers, setMainUsers ] = useState([]);
   const [ searchUser, setSearchUser ] = useState([]);
 
@@ -59,6 +61,7 @@ export function Home(){
               avatar={user.avatar_url}
               login={user.login}
               userUrl={user.url}
+              getAreaUser={getAreaUser}
             >
             </CardUser>
           )

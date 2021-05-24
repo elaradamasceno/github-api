@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+
+import { useHistory } from "react-router-dom";
 import { Card, Avatar } from 'antd';
 import '../styles/css/card-user.css';
 
-export function CardUser({searchUser, avatar, login, userUrl}){
+export function CardUser({searchUser, avatar, login, userUrl, getAreaUser}){
+	const history = useHistory();
 	const { Meta } = Card;
-	const [detailsUser, setDetailsUser] = useState([]);
 
-	useEffect(() => {
-		// console.log(searchUser)
-	}, [])
-
+	function openAreaUser(){
+		let data = {
+			login: login,
+			userUrl: userUrl
+		}
+		getAreaUser(data);
+		history.push(`/${login}`);
+	}
 
 	return(
 		<div className="card-user">
 			<Card
 				className={searchUser.length > 0 && 'researching-user'}
-				// style={searchUser.length > 0 && { width: 400 }}
+				onClick={openAreaUser}
 			>
 				<Meta
 					avatar={
