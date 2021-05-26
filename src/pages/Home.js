@@ -1,28 +1,21 @@
 
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-
-
 import { GithubOutlined} from '@ant-design/icons';
-
-import '../styles/css/home.css';
-
-import { SearchUser } from '../components/SearchUser';
+import { Search } from '../components/Search';
 import { CardUser } from '../components/CardUser';
 
+import api from '../services/api';
+import '../styles/css/home.css';
 
 export function Home({getAreaUser}){
   const [ mainUsers, setMainUsers ] = useState([]);
   const [ searchUser, setSearchUser ] = useState([]);
 
   function getUsers(){
-    let url = 'https://api.github.com/users';
-
     let validateUsers = JSON.parse(localStorage.getItem('mainUsers'));
 
     if(validateUsers === null){
-      axios.get(url)
-      .then(res => {
+      api.get('users').then(res => {
         if(res.status === 200){
           setMainUsers(res.data);
           localStorage.setItem('mainUsers', JSON.stringify(res.data))
@@ -48,7 +41,7 @@ export function Home({getAreaUser}){
       <header>
         <div>
           <GithubOutlined className="icon-github" />
-          <SearchUser resultSearchUser={setSearchUser}></SearchUser>
+          <Search resultSearchUser={setSearchUser} typeSearch="users"></Search>
         </div>
       </header>
 

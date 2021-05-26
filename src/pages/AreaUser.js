@@ -5,7 +5,6 @@ import axios from 'axios';
 import { UserSwitchOutlined, FolderOutlined } from '@ant-design/icons';
 
 import '../styles/css/area-user.css';
-import { responsiveArray } from 'antd/lib/_util/responsiveObserve';
 
 export function AreaUser({userUrl}){
   const [dataUser, setDataUser] = useState([]);

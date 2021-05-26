@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { SearchOutlined, CloseCircleOutlined} from '@ant-design/icons';
 import { Input, Button, Tooltip} from 'antd';
 
-import axios from 'axios';
+import api from '../services/api';
 import '../styles/css/search-user.css';
-import { responsiveArray } from 'antd/lib/_util/responsiveObserve';
 
-export function SearchUser({resultSearchUser}){
+export function Search({resultSearchUser, typeSearch}){
   const [ searchValue, setSearchValue] = useState();
   const [ successSearch, setSuccessSearch ] = useState(false);
 
@@ -20,15 +19,23 @@ export function SearchUser({resultSearchUser}){
     resultSearchUser(JSON.parse(localStorage.getItem('mainUsers')));
   }
 
-  function requestSearchUser(){
-    let url = `https://api.github.com/users/${searchValue}`;
-    axios.get(url)
-    .then(res => {
+  function requestSearch(){
+    api.get(`${typeSearch}/${searchValue}`).then(res => {
       if(res.status === 200){
-        resultSearchUser([res.data]);
-        setSuccessSearch(true);
+        getDataRequest(res);
       }
     })
+  }
+
+  function getDataRequest(res){
+    switch(typeSearch){
+      case 'users':
+        resultSearchUser([res.data]);
+        setSuccessSearch(true);
+        break;
+      case 'repos':
+        console.log('opa ', res )
+    }
   }
 
   function displayRule(){
@@ -42,7 +49,7 @@ export function SearchUser({resultSearchUser}){
               type="primary" 
               shape="circle" 
               icon={<SearchOutlined />}
-              onClick={requestSearchUser}
+              onClick={requestSearch}
             />
           </Tooltip>
         )
