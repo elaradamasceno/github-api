@@ -41,7 +41,7 @@ export function Home({getAreaUser}){
       <header>
         <div>
           <GithubOutlined className="icon-github" />
-          <Search resultSearchUser={setSearchUser} typeSearch="users"></Search>
+          <Search resultSearch={setSearchUser} typeSearch="users"></Search>
         </div>
       </header>
 

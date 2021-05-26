@@ -5,7 +5,7 @@ import { Input, Button, Tooltip} from 'antd';
 import api from '../services/api';
 import '../styles/css/search-user.css';
 
-export function Search({resultSearchUser, typeSearch}){
+export function Search({resultSearch, typeSearch, updateRepo}){
   const [ searchValue, setSearchValue] = useState();
   const [ successSearch, setSuccessSearch ] = useState(false);
 
@@ -16,26 +16,31 @@ export function Search({resultSearchUser, typeSearch}){
   function clearSearchValue(){
     setSearchValue("");
     setSuccessSearch(false);
-    resultSearchUser(JSON.parse(localStorage.getItem('mainUsers')));
+    resultSearch(JSON.parse(localStorage.getItem('mainUsers')));
+  }
+
+  function actionButtonSearch(){
+    switch(typeSearch){
+      case 'users':
+        requestSearch();
+        break;
+      case 'repos':
+        resultSearch.filter((repo, i) => {
+          let validate = repo.name.includes(searchValue);
+
+          if(validate)
+            updateRepo([resultSearch[i]]);
+        })
+    }
   }
 
   function requestSearch(){
     api.get(`${typeSearch}/${searchValue}`).then(res => {
       if(res.status === 200){
-        getDataRequest(res);
+        resultSearch([res.data]);
+        setSuccessSearch(true);
       }
     })
-  }
-
-  function getDataRequest(res){
-    switch(typeSearch){
-      case 'users':
-        resultSearchUser([res.data]);
-        setSuccessSearch(true);
-        break;
-      case 'repos':
-        console.log('opa ', res )
-    }
   }
 
   function displayRule(){
@@ -49,7 +54,7 @@ export function Search({resultSearchUser, typeSearch}){
               type="primary" 
               shape="circle" 
               icon={<SearchOutlined />}
-              onClick={requestSearch}
+              onClick={actionButtonSearch}
             />
           </Tooltip>
         )

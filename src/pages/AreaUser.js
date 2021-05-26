@@ -5,8 +5,10 @@ import axios from 'axios';
 import { UserSwitchOutlined, FolderOutlined } from '@ant-design/icons';
 
 import '../styles/css/area-user.css';
+import { Search } from '../components/Search';
 
 export function AreaUser({userUrl}){
+  const [searchRepo, setSearchRepo] = useState([]);
   const [dataUser, setDataUser] = useState([]);
   const [dataRepos, setDataRepos ] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,8 +33,6 @@ export function AreaUser({userUrl}){
       .then(res => {
         if(res.status === 200)
           setDataRepos(res.data);
-
-        console.log(res)
       })
     }
   }
@@ -66,6 +66,7 @@ export function AreaUser({userUrl}){
       <div className="repositories">
         <div className="title">
           <span> Repositórios </span>
+          <Search resultSearch={dataRepos} typeSearch="repos" updateRepo={setSearchRepo}></Search>
         </div>
 
         <div className="content-repo">
@@ -119,7 +120,12 @@ export function AreaUser({userUrl}){
   useEffect(() => {}, [isLoading]);
   useEffect(() => {
     requestUserRepo();
-  }, [dataUser])
+  }, [dataUser]);
+
+  useEffect(() => {
+    if(searchRepo)
+      setDataRepos(searchRepo)
+  }, [searchRepo])
 
   return (
     <div className="area-user">
