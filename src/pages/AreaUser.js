@@ -72,22 +72,21 @@ export function AreaUser({userUrl}){
         <div className="content-repo">
           {dataRepos && dataRepos.map((repo, index) => {
             return(
-              <div key={index}>
+              <a href={repo.html_url} target="_blank" key={index}>
                 <Card style={{ width: 250 }}>
-                  <p className="name">
-                    <FolderOutlined />
-                    {repo.name}
-                  </p>
+                    <p className="name">
+                      <FolderOutlined />
+                      {repo.name}
+                    </p>
 
-                  <p className="description">
-                    {repo.description}
-                  </p>
-                  <p className="language">
-                    {repo.language}
-                  </p>
+                    <p className="description">
+                      {repo.description}
+                    </p>
+                    <p className="language">
+                      {repo.language}
+                    </p>
                 </Card>
-              </div>
-          
+              </a>          
             )
           })}
 
