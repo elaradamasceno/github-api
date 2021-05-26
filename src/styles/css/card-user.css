@@ -16,4 +16,13 @@
   box-shadow: 0px 0px 6px #D3D3D3;
 }
 
+@media (max-width: 800px) {
+  .card-user {
+    width: 100%;
+  }
+  .card-user .ant-card.ant-card-bordered {
+    margin-right: 0;
+  }
+}
+
 /*# sourceMappingURL=card-user.css.map */

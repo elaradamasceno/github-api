@@ -62,4 +62,31 @@
   text-overflow: ellipsis;
 }
 
+@media (max-width: 800px) {
+  .area-user {
+    padding: 0;
+  }
+  .area-user .content-area-user {
+    display: inherit;
+    grid-template-columns: none;
+  }
+  .area-user .content-area-user .info-user .ant-avatar {
+    margin: 0 auto;
+    display: flex;
+  }
+  .area-user .content-area-user .repositories {
+    padding-top: 1.5rem;
+  }
+  .area-user .content-area-user .repositories .search-user {
+    width: 100%;
+  }
+  .area-user .content-area-user .repositories .content-repo a {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  .area-user .content-area-user .repositories .content-repo a .ant-card.ant-card-bordered {
+    margin: 0 auto;
+  }
+}
+
 /*# sourceMappingURL=area-user.css.map */
