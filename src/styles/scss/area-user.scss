@@ -1,11 +1,84 @@
+$background: #696262;
+$primary-color: #D3D3D3;
+$secondary-color:	#c0c0c0bb;
+
+$size-h1: 2rem;
+$size-bio: 1.25rem;
+$size-title: 1.5rem;
+
+$size-small: .5rem;
+$size-medium: 1rem;
+
 .area-user{
 	height: 100vh;
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-
 	padding: 3rem;
 
-	.info-user{
+	.content-area-user{
+		display: grid;
+		grid-template-columns: 1fr 3fr;
 
+		.info-user{
+      .data-user{
+        padding-top: 1rem;
+
+        h1{ 
+          font-size: $size-h1;
+          color: $primary-color;
+          margin-bottom: 0;
+        }
+
+        .login{ 
+          color: $secondary-color;
+          font-size: $size-medium;
+        }
+
+        .bio{
+          font-size: $size-bio;
+          margin-top: 1rem;
+          font-weight: bold;
+        }
+      }
+		}
+
+    .repositories{
+      .title{
+        font-size: $size-title;
+        color: $primary-color;
+        margin-bottom: .5rem;
+      }
+
+      .content-repo{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 1.5rem 0;
+
+        .ant-card.ant-card-bordered{
+          background: $background;
+          color: $primary-color;
+
+          height: 150px;
+          margin-right: .5rem;
+          margin-bottom: .5rem;
+
+          border: none;
+          cursor: pointer;
+        }
+
+        .name{
+          font-weight: bold;
+          // font-size: ;
+
+          span{
+            margin-right: .5rem;
+          }
+        }
+
+        .description{
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
 	}
 }

@@ -1,8 +1,57 @@
 .area-user {
   height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
   padding: 3rem;
+}
+.area-user .content-area-user {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+.area-user .content-area-user .info-user .data-user {
+  padding-top: 1rem;
+}
+.area-user .content-area-user .info-user .data-user h1 {
+  font-size: 2rem;
+  color: #D3D3D3;
+  margin-bottom: 0;
+}
+.area-user .content-area-user .info-user .data-user .login {
+  color: #c0c0c0bb;
+  font-size: 1rem;
+}
+.area-user .content-area-user .info-user .data-user .bio {
+  font-size: 1.25rem;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.area-user .content-area-user .repositories .title {
+  font-size: 1.5rem;
+  color: #D3D3D3;
+  margin-bottom: 0.5rem;
+}
+.area-user .content-area-user .repositories .content-repo {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
+}
+.area-user .content-area-user .repositories .content-repo .ant-card.ant-card-bordered {
+  background: #696262;
+  color: #D3D3D3;
+  height: 150px;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+.area-user .content-area-user .repositories .content-repo .name {
+  font-weight: bold;
+}
+.area-user .content-area-user .repositories .content-repo .name span {
+  margin-right: 0.5rem;
+}
+.area-user .content-area-user .repositories .content-repo .description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*# sourceMappingURL=area-user.css.map */
