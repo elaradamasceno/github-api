@@ -28,6 +28,12 @@
   color: #D3D3D3;
   margin-bottom: 0.5rem;
 }
+.area-user .content-area-user .repositories .title .buttons-repository {
+  display: flex;
+}
+.area-user .content-area-user .repositories .title .buttons-repository .starred {
+  margin-left: 0.5rem;
+}
 .area-user .content-area-user .repositories .content-repo {
   display: flex;
   flex-wrap: wrap;

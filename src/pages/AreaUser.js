@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { Skeleton, Avatar, Card } from 'antd';
+import { Skeleton, Avatar, Card, Button } from 'antd';
 import axios from 'axios';
-
 import { UserSwitchOutlined, FolderOutlined } from '@ant-design/icons';
-
-import '../styles/css/area-user.css';
 import { Search } from '../components/Search';
+
+import api from '../services/api';
+import '../styles/css/area-user.css';
 
 export function AreaUser({userUrl}){
   const [searchRepo, setSearchRepo] = useState([]);
   const [dataUser, setDataUser] = useState([]);
   const [dataRepos, setDataRepos ] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  function actionButtonStarred(){
+    api.get(`users/${dataUser.login}/starred`).then(res => {
+      if(res.status === 200){
+        setDataRepos(res.data)
+      }
+    })
+  }
 
   function requestUserUrl(){
     axios.get(userUrl)
@@ -66,9 +74,11 @@ export function AreaUser({userUrl}){
       <div className="repositories">
         <div className="title">
           <span> Repositórios </span>
-          <Search resultSearch={dataRepos} typeSearch="repos" updateRepo={setSearchRepo}></Search>
+          <div className="buttons-repository">
+            <Search resultSearch={dataRepos} typeSearch="repos" updateRepo={setSearchRepo}></Search>
+            <Button className="starred" type="primary" shape="round" onClick={actionButtonStarred}> Starred </Button>
+          </div>
         </div>
-
         <div className="content-repo">
           {dataRepos && dataRepos.map((repo, index) => {
             return(

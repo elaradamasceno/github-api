@@ -27,7 +27,6 @@ export function Search({resultSearch, typeSearch, updateRepo}){
       case 'repos':
         resultSearch.filter((repo, i) => {
           let validate = repo.name.includes(searchValue);
-
           if(validate)
             updateRepo([resultSearch[i]]);
         })

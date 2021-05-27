@@ -45,6 +45,14 @@ $size-medium: 1rem;
         font-size: $size-title;
         color: $primary-color;
         margin-bottom: .5rem;
+
+        .buttons-repository{
+          display: flex;
+
+          .starred{
+            margin-left: .5rem;
+          }
+        }
       }
 
       .content-repo{
