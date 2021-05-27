@@ -45,8 +45,10 @@ export function AreaUser({userUrl}){
     if(url){
       axios.get(url)
       .then(res => {
-        if(res.status === 200)
+        if(res.status === 200){
           setDataRepos(res.data);
+          localStorage.setItem('userRepos', JSON.stringify(res.data))
+        }
       })
     }
   }
@@ -125,7 +127,6 @@ export function AreaUser({userUrl}){
         {renderReposUser()}
       </div>
     )
-    
   }
 
   useEffect(() => {

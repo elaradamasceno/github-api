@@ -16,7 +16,14 @@ export function Search({resultSearch, typeSearch, updateRepo}){
   function clearSearchValue(){
     setSearchValue("");
     setSuccessSearch(false);
-    resultSearch(JSON.parse(localStorage.getItem('mainUsers')));
+    
+    switch(typeSearch){
+      case 'users':
+        resultSearch(JSON.parse(localStorage.getItem('mainUsers')));
+        break;
+      case 'repos':
+        updateRepo(JSON.parse(localStorage.getItem('userRepos')));
+    }
   }
 
   function actionButtonSearch(){
@@ -27,8 +34,10 @@ export function Search({resultSearch, typeSearch, updateRepo}){
       case 'repos':
         resultSearch.filter((repo, i) => {
           let validate = repo.name.includes(searchValue);
-          if(validate)
+          if(validate){
             updateRepo([resultSearch[i]]);
+            setSuccessSearch(true);
+          }
         })
     }
   }
