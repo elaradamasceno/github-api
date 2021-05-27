@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Skeleton, Avatar, Card, Button } from 'antd';
+import {Avatar, Card, Button } from 'antd';
 import axios from 'axios';
-import { UserSwitchOutlined, FolderOutlined } from '@ant-design/icons';
+
+import { UserSwitchOutlined, FolderOutlined, StarOutlined } from '@ant-design/icons';
 import { Search } from '../components/Search';
+import { Loading } from '../components/Loading';
 
 import api from '../services/api';
 import '../styles/css/area-user.css';
@@ -13,10 +15,14 @@ export function AreaUser({userUrl}){
   const [dataRepos, setDataRepos ] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [starredIsVisible, setStarredIsVisible] = useState(false);
+
   function actionButtonStarred(){
     api.get(`users/${dataUser.login}/starred`).then(res => {
       if(res.status === 200){
-        setDataRepos(res.data)
+        console.log(res.data)
+        setDataRepos(res.data);
+        setStarredIsVisible(true);
       }
     })
   }
@@ -95,6 +101,13 @@ export function AreaUser({userUrl}){
                     <p className="language">
                       {repo.language}
                     </p>
+
+                    { starredIsVisible && (
+                      <div>
+                        <StarOutlined />
+                        <span> - {repo.stargazers_count}</span>
+                      </div>
+                    )}
                 </Card>
               </a>          
             )
@@ -115,14 +128,6 @@ export function AreaUser({userUrl}){
     
   }
 
-  function renderSkeleton(){
-    return(
-      <div className="content-skeleton">
-        <Skeleton loading={isLoading} active avatar></Skeleton>
-      </div>
-    )
-  }
-
   useEffect(() => {
     requestUserUrl();
   }, []);
@@ -139,7 +144,7 @@ export function AreaUser({userUrl}){
 
   return (
     <div className="area-user">
-      {!isLoading ? renderAreaUser() : renderSkeleton() }
+      {!isLoading ? renderAreaUser() : ( <Loading/>) }
     </div>
   )
 }
