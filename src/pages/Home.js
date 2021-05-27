@@ -10,6 +10,7 @@ import '../styles/css/home.css';
 export function Home({getAreaUser}){
   const [ mainUsers, setMainUsers ] = useState([]);
   const [ searchUser, setSearchUser ] = useState([]);
+  const [ searchNotFound, setSearchNotFound] = useState(false);
 
   function getUsers(){
     let validateUsers = JSON.parse(localStorage.getItem('mainUsers'));
@@ -34,19 +35,22 @@ export function Home({getAreaUser}){
   useEffect(() => {
     if(searchUser.length > 0)
       setMainUsers(searchUser)
-  }, [searchUser])
+  }, [searchUser]);
+
+  useEffect(() => {
+  }, [searchNotFound])
 
   return(
     <div className="home">
       <header>
         <div>
           <GithubOutlined className="icon-github" />
-          <Search resultSearch={setSearchUser} typeSearch="users"></Search>
+          <Search resultSearch={setSearchUser} typeSearch="users" searchNotFound={setSearchNotFound}></Search>
         </div>
       </header>
 
       <div className="content-home">
-        { mainUsers && mainUsers.map((user, index) => {
+        { mainUsers && searchNotFound === false ? mainUsers.map((user, index) => {
           return(
             <CardUser 
               key={index}
@@ -58,7 +62,9 @@ export function Home({getAreaUser}){
             >
             </CardUser>
           )
-        })}
+        }) : 
+          <div>Nenhum resultado encontrado. Por favor, refaça a busca!</div>
+        }
       </div>
     </div>
   )

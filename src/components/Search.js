@@ -5,7 +5,7 @@ import { Input, Button, Tooltip} from 'antd';
 import api from '../services/api';
 import '../styles/css/search-user.css';
 
-export function Search({resultSearch, typeSearch, updateRepo}){
+export function Search({resultSearch, typeSearch, updateRepo, searchNotFound}){
   const [ searchValue, setSearchValue] = useState();
   const [ successSearch, setSuccessSearch ] = useState(false);
 
@@ -20,9 +20,11 @@ export function Search({resultSearch, typeSearch, updateRepo}){
     switch(typeSearch){
       case 'users':
         resultSearch(JSON.parse(localStorage.getItem('mainUsers')));
+        searchNotFound(false);
         break;
       case 'repos':
         updateRepo(JSON.parse(localStorage.getItem('userRepos')));
+        searchNotFound(false);
     }
   }
 
@@ -38,16 +40,23 @@ export function Search({resultSearch, typeSearch, updateRepo}){
             updateRepo([resultSearch[i]]);
             setSuccessSearch(true);
           }
+          else {
+            searchNotFound(true);
+          }
         })
     }
   }
 
   function requestSearch(){
-    api.get(`${typeSearch}/${searchValue}`).then(res => {
-      if(res.status === 200){
+    api.get(`${typeSearch}/${searchValue}`)
+    .then(res => {
         resultSearch([res.data]);
         setSuccessSearch(true);
-      }
+        searchNotFound(false);
+    })
+    .catch(error => {
+      setSuccessSearch(true);
+      searchNotFound(true);
     })
   }
 

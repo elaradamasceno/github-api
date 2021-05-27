@@ -67,6 +67,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.area-user .content-area-user .repositories .content-repo .icon-starred .anticon {
+  color: #eac35f;
+  font-size: 1rem;
+}
 
 @media (max-width: 800px) {
   .area-user {

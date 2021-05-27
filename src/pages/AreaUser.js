@@ -16,15 +16,21 @@ export function AreaUser({userUrl}){
   const [isLoading, setIsLoading] = useState(true);
 
   const [starredIsVisible, setStarredIsVisible] = useState(false);
+  const [ searchNotFound, setSearchNotFound] = useState(false);
 
-  function actionButtonStarred(){
+  function showStarred(){
     api.get(`users/${dataUser.login}/starred`).then(res => {
       if(res.status === 200){
-        console.log(res.data)
         setDataRepos(res.data);
         setStarredIsVisible(true);
       }
     })
+  }
+
+  function clearStarred(){
+    let repos = JSON.parse(localStorage.getItem('userRepos'));
+    setDataRepos(repos);
+    setStarredIsVisible(false);
   }
 
   function requestUserUrl(){
@@ -83,8 +89,18 @@ export function AreaUser({userUrl}){
         <div className="title">
           <span> Repositórios </span>
           <div className="buttons-repository">
-            <Search resultSearch={dataRepos} typeSearch="repos" updateRepo={setSearchRepo}></Search>
-            <Button className="starred" type="primary" shape="round" onClick={actionButtonStarred}> Starred </Button>
+            <Search 
+              resultSearch={dataRepos} 
+              typeSearch="repos" 
+              updateRepo={setSearchRepo}
+              searchNotFound={setSearchNotFound}
+            >  
+            </Search>
+
+            { starredIsVisible ? 
+              <Button className="starred" type="primary" shape="round" onClick={clearStarred}> Limpar Starred </Button>
+              : <Button className="starred" type="primary" shape="round" onClick={showStarred}> Mostrar Starred </Button>
+            }
           </div>
         </div>
         <div className="content-repo">
@@ -105,7 +121,7 @@ export function AreaUser({userUrl}){
                     </p>
 
                     { starredIsVisible && (
-                      <div>
+                      <div className="icon-starred">
                         <StarOutlined />
                         <span> - {repo.stargazers_count}</span>
                       </div>
@@ -141,7 +157,7 @@ export function AreaUser({userUrl}){
   useEffect(() => {
     if(searchRepo)
       setDataRepos(searchRepo)
-  }, [searchRepo])
+  }, [searchRepo]);
 
   return (
     <div className="area-user">

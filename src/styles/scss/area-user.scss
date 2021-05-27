@@ -1,6 +1,7 @@
 $background: #696262;
 $primary-color: #D3D3D3;
 $secondary-color:	#c0c0c0bb;
+$tertiary-color: #eac35f;
 
 $size-h1: 2rem;
 $size-bio: 1.25rem;
@@ -95,6 +96,13 @@ $size-medium: 1rem;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+        }
+
+        .icon-starred{
+          .anticon{
+            color: $tertiary-color;
+            font-size: $size-medium;
+          }
         }
       }
     }
