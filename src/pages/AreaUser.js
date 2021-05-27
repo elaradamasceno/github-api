@@ -104,7 +104,7 @@ export function AreaUser({userUrl}){
           </div>
         </div>
         <div className="content-repo">
-          {dataRepos && dataRepos.map((repo, index) => {
+          {dataRepos && searchNotFound === false ? dataRepos.map((repo, index) => {
             return(
               <a href={repo.html_url} target="_blank" key={index}>
                 <Card style={{ width: 250 }}>
@@ -129,7 +129,9 @@ export function AreaUser({userUrl}){
                 </Card>
               </a>          
             )
-          })}
+          }) : 
+            <div>Nenhum resultado encontrado. Por favor, refaça a busca!</div>
+          }
 
         </div>
       </div>

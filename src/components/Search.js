@@ -41,7 +41,9 @@ export function Search({resultSearch, typeSearch, updateRepo, searchNotFound}){
             setSuccessSearch(true);
           }
           else {
+            updateRepo([]);
             searchNotFound(true);
+            setSuccessSearch(true);
           }
         })
     }
